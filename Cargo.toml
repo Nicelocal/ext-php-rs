@@ -1,5 +1,5 @@
 [package]
-name = "ext-php-rs"
+name = "nicelocal-ext-php-rs"
 description = "Bindings for the Zend API to build PHP extensions natively in Rust."
 repository = "https://github.com/davidcole1340/ext-php-rs"
 homepage = "https://github.com/davidcole1340/ext-php-rs"
