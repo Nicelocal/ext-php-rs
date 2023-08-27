@@ -43,13 +43,13 @@ pub fn parser(input: DeriveInput) -> Result<TokenStream> {
                 let ident = &ty.ident;
                 into_where_clause.predicates.push(
                     syn::parse2(quote! {
-                        #ident: ::ext_php_rs::convert::IntoZval
+                        #ident: ::nicelocal_ext_php_rs::convert::IntoZval
                     })
                     .expect("couldn't parse where predicate"),
                 );
                 from_where_clause.predicates.push(
                     syn::parse2(quote! {
-                        #ident: ::ext_php_rs::convert::FromZval<'_zval>
+                        #ident: ::nicelocal_ext_php_rs::convert::FromZval<'_zval>
                     })
                     .expect("couldn't parse where predicate"),
                 );
@@ -127,43 +127,43 @@ fn parse_struct(
         .collect::<Result<Vec<_>>>()?;
 
     Ok(quote! {
-        impl #into_impl_generics ::ext_php_rs::convert::IntoZendObject for #ident #ty_generics #into_where_clause {
-            fn into_zend_object(self) -> ::ext_php_rs::error::Result<
-                ::ext_php_rs::boxed::ZBox<
-                    ::ext_php_rs::types::ZendObject
+        impl #into_impl_generics ::nicelocal_ext_php_rs::convert::IntoZendObject for #ident #ty_generics #into_where_clause {
+            fn into_zend_object(self) -> ::nicelocal_ext_php_rs::error::Result<
+                ::nicelocal_ext_php_rs::boxed::ZBox<
+                    ::nicelocal_ext_php_rs::types::ZendObject
                 >
             > {
-                use ::ext_php_rs::convert::IntoZval;
+                use ::nicelocal_ext_php_rs::convert::IntoZval;
 
-                let mut obj = ::ext_php_rs::types::ZendObject::new_stdclass();
+                let mut obj = ::nicelocal_ext_php_rs::types::ZendObject::new_stdclass();
                 #(#into_fields)*
-                ::ext_php_rs::error::Result::Ok(obj)
+                ::nicelocal_ext_php_rs::error::Result::Ok(obj)
             }
         }
 
-        impl #into_impl_generics ::ext_php_rs::convert::IntoZval for #ident #ty_generics #into_where_clause {
-            const TYPE: ::ext_php_rs::flags::DataType = ::ext_php_rs::flags::DataType::Object(None);
+        impl #into_impl_generics ::nicelocal_ext_php_rs::convert::IntoZval for #ident #ty_generics #into_where_clause {
+            const TYPE: ::nicelocal_ext_php_rs::flags::DataType = ::nicelocal_ext_php_rs::flags::DataType::Object(None);
 
-            fn set_zval(self, zv: &mut ::ext_php_rs::types::Zval, persistent: bool) -> ::ext_php_rs::error::Result<()> {
-                use ::ext_php_rs::convert::{IntoZval, IntoZendObject};
+            fn set_zval(self, zv: &mut ::nicelocal_ext_php_rs::types::Zval, persistent: bool) -> ::nicelocal_ext_php_rs::error::Result<()> {
+                use ::nicelocal_ext_php_rs::convert::{IntoZval, IntoZendObject};
 
                 self.into_zend_object()?.set_zval(zv, persistent)
             }
         }
 
-        impl #from_impl_generics ::ext_php_rs::convert::FromZendObject<'_zval> for #ident #ty_generics #from_where_clause {
-            fn from_zend_object(obj: &'_zval ::ext_php_rs::types::ZendObject) -> ::ext_php_rs::error::Result<Self> {
-                ::ext_php_rs::error::Result::Ok(Self {
+        impl #from_impl_generics ::nicelocal_ext_php_rs::convert::FromZendObject<'_zval> for #ident #ty_generics #from_where_clause {
+            fn from_zend_object(obj: &'_zval ::nicelocal_ext_php_rs::types::ZendObject) -> ::nicelocal_ext_php_rs::error::Result<Self> {
+                ::nicelocal_ext_php_rs::error::Result::Ok(Self {
                     #(#from_fields)*
                 })
             }
         }
 
-        impl #from_impl_generics ::ext_php_rs::convert::FromZval<'_zval> for #ident #ty_generics #from_where_clause {
-            const TYPE: ::ext_php_rs::flags::DataType = ::ext_php_rs::flags::DataType::Object(None);
+        impl #from_impl_generics ::nicelocal_ext_php_rs::convert::FromZval<'_zval> for #ident #ty_generics #from_where_clause {
+            const TYPE: ::nicelocal_ext_php_rs::flags::DataType = ::nicelocal_ext_php_rs::flags::DataType::Object(None);
 
-            fn from_zval(zv: &'_zval ::ext_php_rs::types::Zval) -> ::std::option::Option<Self> {
-                use ::ext_php_rs::convert::FromZendObject;
+            fn from_zval(zv: &'_zval ::nicelocal_ext_php_rs::types::Zval) -> ::std::option::Option<Self> {
+                use ::nicelocal_ext_php_rs::convert::FromZendObject;
 
                 Self::from_zend_object(zv.object()?).ok()
             }
@@ -230,30 +230,30 @@ fn parse_enum(
     let default = default.unwrap_or_else(|| quote! { None });
 
     Ok(quote! {
-        impl #into_impl_generics ::ext_php_rs::convert::IntoZval for #ident #ty_generics #into_where_clause {
-            const TYPE: ::ext_php_rs::flags::DataType = ::ext_php_rs::flags::DataType::Mixed;
+        impl #into_impl_generics ::nicelocal_ext_php_rs::convert::IntoZval for #ident #ty_generics #into_where_clause {
+            const TYPE: ::nicelocal_ext_php_rs::flags::DataType = ::nicelocal_ext_php_rs::flags::DataType::Mixed;
 
             fn set_zval(
                 self,
-                zv: &mut ::ext_php_rs::types::Zval,
+                zv: &mut ::nicelocal_ext_php_rs::types::Zval,
                 persistent: bool,
-            ) -> ::ext_php_rs::error::Result<()> {
-                use ::ext_php_rs::convert::IntoZval;
+            ) -> ::nicelocal_ext_php_rs::error::Result<()> {
+                use ::nicelocal_ext_php_rs::convert::IntoZval;
 
                 match self {
                     #(#into_variants,)*
                     _ => {
                         zv.set_null();
-                        ::ext_php_rs::error::Result::Ok(())
+                        ::nicelocal_ext_php_rs::error::Result::Ok(())
                     }
                 }
             }
         }
 
-        impl #from_impl_generics ::ext_php_rs::convert::FromZval<'_zval> for #ident #ty_generics #from_where_clause {
-            const TYPE: ::ext_php_rs::flags::DataType = ::ext_php_rs::flags::DataType::Mixed;
+        impl #from_impl_generics ::nicelocal_ext_php_rs::convert::FromZval<'_zval> for #ident #ty_generics #from_where_clause {
+            const TYPE: ::nicelocal_ext_php_rs::flags::DataType = ::nicelocal_ext_php_rs::flags::DataType::Mixed;
 
-            fn from_zval(zval: &'_zval ::ext_php_rs::types::Zval) -> ::std::option::Option<Self> {
+            fn from_zval(zval: &'_zval ::nicelocal_ext_php_rs::types::Zval) -> ::std::option::Option<Self> {
                 #(#from_variants)*
                 #default
             }

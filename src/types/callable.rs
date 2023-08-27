@@ -62,7 +62,7 @@ impl<'a> ZendCallable<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendCallable;
+    /// use nicelocal_ext_php_rs::types::ZendCallable;
     ///
     /// let strpos = ZendCallable::try_from_name("strpos").unwrap();
     /// let result = strpos.try_call(vec![&"hello", &"e"]).unwrap();
@@ -93,7 +93,7 @@ impl<'a> ZendCallable<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendCallable;
+    /// use nicelocal_ext_php_rs::types::ZendCallable;
     ///
     /// let strpos = ZendCallable::try_from_name("strpos").unwrap();
     /// let result = strpos.try_call(vec![&"hello", &"e"]).unwrap();

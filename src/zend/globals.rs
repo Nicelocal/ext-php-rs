@@ -8,7 +8,7 @@ use parking_lot::{const_rwlock, RwLock, RwLockReadGuard, RwLockWriteGuard};
 use crate::boxed::ZBox;
 #[cfg(php82)]
 use crate::ffi::zend_atomic_bool_store;
-use crate::ffi::{_zend_executor_globals, ext_php_rs_executor_globals};
+use crate::ffi::{_zend_executor_globals, nicelocal_ext_php_rs_executor_globals};
 use crate::types::{ZendHashTable, ZendObject};
 
 /// Stores global variables used in the PHP executor.
@@ -25,7 +25,7 @@ impl ExecutorGlobals {
     pub fn get() -> GlobalReadGuard<Self> {
         // SAFETY: PHP executor globals are statically declared therefore should never
         // return an invalid pointer.
-        let globals = unsafe { ext_php_rs_executor_globals().as_ref() }
+        let globals = unsafe { nicelocal_ext_php_rs_executor_globals().as_ref() }
             .expect("Static executor globals were invalid");
         let guard = GLOBALS_LOCK.read();
         GlobalReadGuard { globals, guard }
@@ -41,7 +41,7 @@ impl ExecutorGlobals {
     pub fn get_mut() -> GlobalWriteGuard<Self> {
         // SAFETY: PHP executor globals are statically declared therefore should never
         // return an invalid pointer.
-        let globals = unsafe { ext_php_rs_executor_globals().as_mut() }
+        let globals = unsafe { nicelocal_ext_php_rs_executor_globals().as_mut() }
             .expect("Static executor globals were invalid");
         let guard = GLOBALS_LOCK.write();
         GlobalWriteGuard { globals, guard }

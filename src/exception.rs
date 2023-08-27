@@ -99,7 +99,7 @@ impl From<anyhow::Error> for PhpException {
 /// # Examples
 ///
 /// ```no_run
-/// use ext_php_rs::{zend::{ce, ClassEntry}, exception::throw};
+/// use nicelocal_ext_php_rs::{zend::{ce, ClassEntry}, exception::throw};
 ///
 /// throw(ce::compile_error(), "This is a CompileError.");
 /// ```
@@ -122,7 +122,7 @@ pub fn throw(ex: &ClassEntry, message: &str) -> Result<()> {
 /// # Examples
 ///
 /// ```no_run
-/// use ext_php_rs::{zend::{ce, ClassEntry}, exception::throw_with_code};
+/// use nicelocal_ext_php_rs::{zend::{ce, ClassEntry}, exception::throw_with_code};
 ///
 /// throw_with_code(ce::compile_error(), 123, "This is a CompileError.");
 /// ```

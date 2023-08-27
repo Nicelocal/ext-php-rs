@@ -15,8 +15,8 @@ all generics types.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[derive(ZvalConvert)]
 pub struct ExampleClass<'a> {
@@ -60,8 +60,8 @@ Another example involving generics:
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 // T must implement both `PartialEq<i32>` and `FromZval`.
 #[derive(Debug, ZvalConvert)]
@@ -100,8 +100,8 @@ Basic example showing the importance of variant ordering and default field:
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[derive(Debug, ZvalConvert)]
 pub enum UnionExample<'a> {

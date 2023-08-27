@@ -44,7 +44,7 @@ fn parse_function(mut func: ForeignItemFn) -> Result<TokenStream> {
         #(#attrs)* #vis #sig {
             use ::std::convert::TryInto;
 
-            let callable = ::ext_php_rs::types::ZendCallable::try_from_name(
+            let callable = ::nicelocal_ext_php_rs::types::ZendCallable::try_from_name(
                 #name
             ).expect(concat!("Unable to find callable function `", #name, "`."));
 

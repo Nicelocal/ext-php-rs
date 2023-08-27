@@ -4,7 +4,7 @@
 //! [`pack`]: https://www.php.net/manual/en/function.pack.php
 //! [`unpack`]: https://www.php.net/manual/en/function.unpack.php
 
-use crate::ffi::{ext_php_rs_zend_string_init, zend_string};
+use crate::ffi::{nicelocal_ext_php_rs_zend_string_init, zend_string};
 
 use std::{
     convert::TryFrom,
@@ -149,7 +149,7 @@ macro_rules! pack_impl {
             fn pack_into(vec: Vec<Self>) -> *mut zend_string {
                 let len = vec.len() * ($d as usize / 8);
                 let ptr = Box::into_raw(vec.into_boxed_slice());
-                unsafe { ext_php_rs_zend_string_init(ptr.cast(), len as _, false) }
+                unsafe { nicelocal_ext_php_rs_zend_string_init(ptr.cast(), len as _, false) }
             }
 
             fn unpack_into(s: &zend_string) -> Vec<Self> {

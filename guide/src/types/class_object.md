@@ -14,8 +14,8 @@ object as a superset of an object, as a class object contains a Zend object.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::{prelude::*, types::ZendClassObject};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::{prelude::*, types::ZendClassObject};
 
 #[php_class]
 pub struct Example {
@@ -43,8 +43,8 @@ impl Example {
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[php_class]
 pub struct Example {

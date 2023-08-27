@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 
 use anyhow::{Context, Result};
-use ext_php_rs::describe::Description;
+use nicelocal_ext_php_rs::describe::Description;
 use libloading::os::unix::{Library, Symbol};
 
 pub struct Ext {
@@ -21,7 +21,7 @@ impl Ext {
 
         let describe_fn = unsafe {
             ext_lib
-                .get(b"ext_php_rs_describe_module")
+                .get(b"nicelocal_ext_php_rs_describe_module")
                 .with_context(|| "Failed to load describe function symbol from extension library")?
         };
 

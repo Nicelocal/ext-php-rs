@@ -66,8 +66,8 @@ This example creates a PHP class `Human`, adding a PHP property `address`.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 #[php_class]
 pub struct Human {
     name: String,
@@ -87,9 +87,9 @@ it in the `Redis\Exception` namespace:
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
-use ext_php_rs::{exception::PhpException, zend::ce};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
+use nicelocal_ext_php_rs::{exception::PhpException, zend::ce};
 
 #[php_class(name = "Redis\\Exception\\RedisException")]
 #[extends(ce::exception())]
@@ -114,9 +114,9 @@ To implement an interface, use `#[implements(ce)]` where `ce` is an expression r
 The following example implements [`ArrayAccess`](https://www.php.net/manual/en/class.arrayaccess.php):
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
-use ext_php_rs::{exception::PhpResult, types::Zval, zend::ce};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
+use nicelocal_ext_php_rs::{exception::PhpResult, types::Zval, zend::ce};
 
 #[php_class]
 #[implements(ce::arrayaccess())]

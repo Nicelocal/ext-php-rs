@@ -18,8 +18,8 @@ Read more about what the module startup function is used for
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 #[php_startup]
 pub fn startup_function() {
 

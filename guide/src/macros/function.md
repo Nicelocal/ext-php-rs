@@ -15,8 +15,8 @@ default value.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 #[php_function]
 pub fn greet(name: String, age: Option<i32>) -> String {
     let mut greeting = format!("Hello, {}!", name);
@@ -36,8 +36,8 @@ default, it does not need to be a variant of `Option`:
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 #[php_function(defaults(offset = 0))]
 pub fn rusty_strpos(haystack: &str, needle: &str, offset: i64) -> Option<usize> {
     let haystack: String = haystack.chars().skip(offset as usize).collect();
@@ -52,8 +52,8 @@ argument rather than an optional argument.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 /// `age` will be deemed required and nullable rather than optional.
 #[php_function]
 pub fn greet(name: String, age: Option<i32>, description: String) -> String {
@@ -75,8 +75,8 @@ parameter:
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 /// `age` will be deemed required and nullable rather than optional,
 /// while description will be optional.
 #[php_function(optional = "description")]

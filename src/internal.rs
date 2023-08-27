@@ -5,7 +5,7 @@
 ///
 /// [`#[php_startup]`]: crate::php_startup
 #[inline(always)]
-pub fn ext_php_rs_startup() {
+pub fn nicelocal_ext_php_rs_startup() {
     #[cfg(feature = "closure")]
     crate::closure::Closure::build();
 }

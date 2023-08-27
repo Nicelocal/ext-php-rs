@@ -16,8 +16,8 @@ use crate::{
     convert::{FromZval, IntoZval},
     error::{Error, Result},
     ffi::{
-        ext_php_rs_is_known_valid_utf8, ext_php_rs_set_known_valid_utf8,
-        ext_php_rs_zend_string_init, ext_php_rs_zend_string_release, zend_string,
+        nicelocal_ext_php_rs_is_known_valid_utf8, nicelocal_ext_php_rs_set_known_valid_utf8,
+        nicelocal_ext_php_rs_zend_string_init, nicelocal_ext_php_rs_zend_string_release, zend_string,
         zend_string_init_interned,
     },
     flags::DataType,
@@ -71,7 +71,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     ///
     /// let s = ZendStr::new("Hello, world!", false);
     /// let php = ZendStr::new([80, 72, 80], false);
@@ -81,7 +81,7 @@ impl ZendStr {
         // TODO: we should handle the special cases when length is either 0 or 1
         // see `zend_string_init_fast()` in `zend_string.h`
         unsafe {
-            let ptr = ext_php_rs_zend_string_init(s.as_ptr().cast(), s.len(), persistent)
+            let ptr = nicelocal_ext_php_rs_zend_string_init(s.as_ptr().cast(), s.len(), persistent)
                 .as_mut()
                 .expect("Failed to allocate memory for new Zend string");
             ZBox::from_raw(ptr)
@@ -112,7 +112,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     /// use std::ffi::CString;
     ///
     /// let c_s = CString::new("Hello world!").unwrap();
@@ -121,7 +121,7 @@ impl ZendStr {
     pub fn from_c_str(str: &CStr, persistent: bool) -> ZBox<Self> {
         unsafe {
             let ptr =
-                ext_php_rs_zend_string_init(str.as_ptr(), str.to_bytes().len() as _, persistent);
+                nicelocal_ext_php_rs_zend_string_init(str.as_ptr(), str.to_bytes().len() as _, persistent);
 
             ZBox::from_raw(
                 ptr.as_mut()
@@ -167,7 +167,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     ///
     /// let s = ZendStr::new_interned("PHP", true);
     /// ```
@@ -220,7 +220,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     /// use std::ffi::CString;
     ///
     /// let c_s = CString::new("PHP").unwrap();
@@ -245,7 +245,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     ///
     /// let s = ZendStr::new("hello, world!", false);
     /// assert_eq!(s.len(), 13);
@@ -259,7 +259,7 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     ///
     /// let s = ZendStr::new("hello, world!", false);
     /// assert_eq!(s.is_empty(), false);
@@ -288,18 +288,18 @@ impl ZendStr {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendStr;
+    /// use nicelocal_ext_php_rs::types::ZendStr;
     ///
     /// let s = ZendStr::new("hello, world!", false);
     /// assert!(s.as_str().is_ok());
     /// ```
     pub fn as_str(&self) -> Result<&str> {
-        if unsafe { ext_php_rs_is_known_valid_utf8(self.as_ptr()) } {
+        if unsafe { nicelocal_ext_php_rs_is_known_valid_utf8(self.as_ptr()) } {
             let str = unsafe { std::str::from_utf8_unchecked(self.as_bytes()) };
             return Ok(str);
         }
         let str = std::str::from_utf8(self.as_bytes()).map_err(|_| Error::InvalidUtf8)?;
-        unsafe { ext_php_rs_set_known_valid_utf8(self.as_ptr() as *mut _) };
+        unsafe { nicelocal_ext_php_rs_set_known_valid_utf8(self.as_ptr() as *mut _) };
         Ok(str)
     }
 
@@ -321,7 +321,7 @@ impl ZendStr {
 
 unsafe impl ZBoxable for ZendStr {
     fn free(&mut self) {
-        unsafe { ext_php_rs_zend_string_release(self) };
+        unsafe { nicelocal_ext_php_rs_zend_string_release(self) };
     }
 }
 

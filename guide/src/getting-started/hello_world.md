@@ -67,7 +67,7 @@ macro to not enable the feature on other operating systems.
 
 ```rust,ignore
 #![cfg_attr(windows, feature(abi_vectorcall))]
-use ext_php_rs::prelude::*;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[php_function]
 pub fn hello_world(name: &str) -> String {

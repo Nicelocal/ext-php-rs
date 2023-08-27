@@ -87,7 +87,7 @@ impl<'a, T: 'a> Property<'a, T> {
     /// # Examples
     ///
     /// ```no_run
-    /// # use ext_php_rs::props::Property;
+    /// # use nicelocal_ext_php_rs::props::Property;
     /// struct Test {
     ///     pub a: i32,
     /// }
@@ -116,7 +116,7 @@ impl<'a, T: 'a> Property<'a, T> {
     /// # Examples
     ///
     /// ```no_run
-    /// # use ext_php_rs::props::Property;
+    /// # use nicelocal_ext_php_rs::props::Property;
     /// struct Test;
     ///
     /// impl Test {
@@ -177,8 +177,8 @@ impl<'a, T: 'a> Property<'a, T> {
     /// # Examples
     ///
     /// ```no_run
-    /// # use ext_php_rs::props::Property;
-    /// # use ext_php_rs::types::Zval;
+    /// # use nicelocal_ext_php_rs::props::Property;
+    /// # use nicelocal_ext_php_rs::types::Zval;
     /// struct Test {
     ///     pub a: i32,
     /// }
@@ -224,9 +224,9 @@ impl<'a, T: 'a> Property<'a, T> {
     /// # Examples
     ///
     /// ```no_run
-    /// # use ext_php_rs::props::Property;
-    /// # use ext_php_rs::types::Zval;
-    /// # use ext_php_rs::convert::IntoZval;
+    /// # use nicelocal_ext_php_rs::props::Property;
+    /// # use nicelocal_ext_php_rs::types::Zval;
+    /// # use nicelocal_ext_php_rs::convert::IntoZval;
     /// struct Test {
     ///     pub a: i32,
     /// }

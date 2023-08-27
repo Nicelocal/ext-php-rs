@@ -9,7 +9,7 @@ use crate::{
     convert::{FromZendObject, FromZval, FromZvalMut, IntoZval, IntoZvalDyn},
     error::{Error, Result},
     ffi::{
-        ext_php_rs_zend_object_release, zend_call_known_function, zend_object, zend_objects_new,
+        nicelocal_ext_php_rs_zend_object_release, zend_call_known_function, zend_object, zend_objects_new,
         HashTable, ZEND_ISEMPTY, ZEND_PROPERTY_EXISTS, ZEND_PROPERTY_ISSET, zend_hash_str_find_ptr_lc, zend_function, object_properties_init,
     },
     flags::DataType,
@@ -71,7 +71,7 @@ impl ZendObject {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendObject;
+    /// use nicelocal_ext_php_rs::types::ZendObject;
     ///
     /// let mut obj = ZendObject::new_stdclass();
     ///
@@ -304,7 +304,7 @@ impl ZendObject {
 
 unsafe impl ZBoxable for ZendObject {
     fn free(&mut self) {
-        unsafe { ext_php_rs_zend_object_release(self) }
+        unsafe { nicelocal_ext_php_rs_zend_object_release(self) }
     }
 }
 

@@ -28,8 +28,8 @@ the `#[php_function]` attribute.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 use std::convert::TryInto;
 
 // Trivial example - PHP represents all integers as `u64` on 64-bit systems
@@ -47,4 +47,4 @@ pub fn module(module: ModuleBuilder) -> ModuleBuilder {
 # fn main() {}
 ```
 
-[`PhpException`]: https://docs.rs/ext-php-rs/0.5.0/ext_php_rs/php/exceptions/struct.PhpException.html
+[`PhpException`]: https://docs.rs/ext-php-rs/0.5.0/nicelocal_ext_php_rs/php/exceptions/struct.PhpException.html

@@ -18,8 +18,8 @@ be thrown if one is encountered while converting a `String` to a zval.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 #[php_function]
 pub fn str_example(input: String) -> String {
     format!("Hello {}", input)

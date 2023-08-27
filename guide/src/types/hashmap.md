@@ -18,8 +18,8 @@ Converting from a `HashMap` to a zval is valid when the key implements
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
 # use std::collections::HashMap;
 #[php_function]
 pub fn test_hashmap(hm: HashMap<String, String>) -> Vec<String> {

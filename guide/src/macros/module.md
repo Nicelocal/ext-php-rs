@@ -34,10 +34,10 @@ registered inside the extension startup function.
 
 ```rust,ignore
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-# use ext_php_rs::prelude::*;
-# use ext_php_rs::{info_table_start, info_table_row, info_table_end};
-# use ext_php_rs::php::module::ModuleEntry;
+# extern crate nicelocal_ext_php_rs;
+# use nicelocal_ext_php_rs::prelude::*;
+# use nicelocal_ext_php_rs::{info_table_start, info_table_row, info_table_end};
+# use nicelocal_ext_php_rs::php::module::ModuleEntry;
 /// Used by the `phpinfo()` function and when you run `php -i`.
 /// This will probably be simplified with another macro eventually!
 pub extern "C" fn php_module_info(_module: *mut ModuleEntry) {

@@ -14,7 +14,7 @@ use crate::{
     convert::{FromZendObject, FromZendObjectMut, FromZval, FromZvalMut, IntoZval},
     error::{Error, Result},
     ffi::{
-        ext_php_rs_zend_object_alloc, ext_php_rs_zend_object_release, object_properties_init,
+        nicelocal_ext_php_rs_zend_object_alloc, nicelocal_ext_php_rs_zend_object_release, object_properties_init,
         zend_object, zend_object_std_init, zend_objects_clone_members,
     },
     flags::DataType,
@@ -106,7 +106,7 @@ impl<T: RegisteredClass> ZendClassObject<T> {
         let size = mem::size_of::<ZendClassObject<T>>();
         let meta = T::get_metadata();
         let ce = meta.ce() as *const _ as *mut _;
-        let obj = ext_php_rs_zend_object_alloc(size as _, ce) as *mut ZendClassObject<T>;
+        let obj = nicelocal_ext_php_rs_zend_object_alloc(size as _, ce) as *mut ZendClassObject<T>;
         let obj = obj
             .as_mut()
             .expect("Failed to allocate for new Zend object");
@@ -224,7 +224,7 @@ unsafe impl<T: RegisteredClass> ZBoxable for ZendClassObject<T> {
         // SAFETY: All constructors guarantee that `self` contains a valid pointer.
         // Further, all constructors guarantee that the `std` field of
         // `ZendClassObject` will be initialized.
-        unsafe { ext_php_rs_zend_object_release(&mut self.std) }
+        unsafe { nicelocal_ext_php_rs_zend_object_release(&mut self.std) }
     }
 }
 

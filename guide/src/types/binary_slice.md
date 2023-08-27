@@ -23,9 +23,9 @@ isize, usize, f32, f64).
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
-use ext_php_rs::binary_slice::BinarySlice;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
+use nicelocal_ext_php_rs::binary_slice::BinarySlice;
 
 #[php_function]
 pub fn test_binary_slice(input: BinarySlice<u8>) -> u8 {

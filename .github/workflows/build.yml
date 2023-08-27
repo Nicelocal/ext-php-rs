@@ -82,7 +82,7 @@ jobs:
       # Build
       - name: Build
         env:
-          EXT_PHP_RS_TEST: ""
+          nicelocal_ext_php_rs_TEST: ""
         run: cargo build --release --all-features --all
       # Test & lint
       - name: Test inline examples

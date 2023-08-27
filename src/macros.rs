@@ -83,8 +83,8 @@ macro_rules! call_user_func {
 /// In this case, all of the arguments are required.
 ///
 /// ```
-/// # #[macro_use] extern crate ext_php_rs;
-/// use ext_php_rs::{
+/// # #[macro_use] extern crate nicelocal_ext_php_rs;
+/// use nicelocal_ext_php_rs::{
 ///     parse_args,
 ///     args::Arg,
 ///     flags::DataType,
@@ -106,7 +106,7 @@ macro_rules! call_user_func {
 /// arguments from the second.
 ///
 /// ```
-/// use ext_php_rs::{
+/// use nicelocal_ext_php_rs::{
 ///     parse_args,
 ///     args::Arg,
 ///     flags::DataType,
@@ -157,7 +157,7 @@ macro_rules! parse_args {
 /// # Examples
 ///
 /// ```
-/// use ext_php_rs::{
+/// use nicelocal_ext_php_rs::{
 ///     throw,
 ///     zend::{ce, ClassEntry, ExecuteData},
 ///     types::Zval,
@@ -200,8 +200,8 @@ macro_rules! throw {
 /// # Examples
 ///
 /// ```
-/// # use ext_php_rs::{convert::{IntoZval, FromZval}, types::{Zval, ZendObject}, class::{RegisteredClass}};
-/// use ext_php_rs::class_derives;
+/// # use nicelocal_ext_php_rs::{convert::{IntoZval, FromZval}, types::{Zval, ZendObject}, class::{RegisteredClass}};
+/// use nicelocal_ext_php_rs::class_derives;
 ///
 /// struct Test {
 ///     a: i32,
@@ -211,14 +211,14 @@ macro_rules! throw {
 /// impl RegisteredClass for Test {
 ///     const CLASS_NAME: &'static str = "Test";
 ///
-///     const CONSTRUCTOR: Option<ext_php_rs::class::ConstructorMeta<Self>> = None;
+///     const CONSTRUCTOR: Option<nicelocal_ext_php_rs::class::ConstructorMeta<Self>> = None;
 ///
-///     fn get_metadata() -> &'static ext_php_rs::class::ClassMetadata<Self> {
+///     fn get_metadata() -> &'static nicelocal_ext_php_rs::class::ClassMetadata<Self> {
 ///         todo!()
 ///     }
 ///
 ///     fn get_properties<'a>(
-///     ) -> std::collections::HashMap<&'static str, ext_php_rs::props::Property<'a, Self>>
+///     ) -> std::collections::HashMap<&'static str, nicelocal_ext_php_rs::props::Property<'a, Self>>
 ///     {
 ///         todo!()
 ///     }

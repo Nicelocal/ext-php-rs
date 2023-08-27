@@ -48,6 +48,6 @@ impl Constant {
     //         Visibility::Private => quote! { Private },
     //     };
 
-    //     quote! { ::ext_php_rs::flags::ConstantFlags}
+    //     quote! { ::nicelocal_ext_php_rs::flags::ConstantFlags}
     // }
 }

@@ -67,7 +67,7 @@ impl Closure {
     /// # Example
     ///
     /// ```rust,no_run
-    /// use ext_php_rs::closure::Closure;
+    /// use nicelocal_ext_php_rs::closure::Closure;
     ///
     /// let closure = Closure::wrap(Box::new(|name| {
     ///     format!("Hello {}", name)
@@ -96,7 +96,7 @@ impl Closure {
     /// # Example
     ///
     /// ```rust,no_run
-    /// use ext_php_rs::closure::Closure;
+    /// use nicelocal_ext_php_rs::closure::Closure;
     ///
     /// let name: String = "Hello world".into();
     /// let closure = Closure::wrap_once(Box::new(|| {

@@ -44,8 +44,8 @@ fact that it can modify variables in its scope.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[php_function]
 pub fn closure_get_string() -> Closure {
@@ -85,8 +85,8 @@ will be thrown.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[php_function]
 pub fn closure_return_string() -> Closure {
@@ -113,8 +113,8 @@ function by its name, or as a parameter. They can be called through the
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
 #[php_function]
 pub fn callable_parameter(call: ZendCallable) {

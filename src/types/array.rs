@@ -39,7 +39,7 @@ use crate::{
 /// # Examples
 ///
 /// ```no_run
-/// use ext_php_rs::types::ZendHashTable;
+/// use nicelocal_ext_php_rs::types::ZendHashTable;
 ///
 /// let mut ht = ZendHashTable::new();
 /// ht.push(1);
@@ -60,7 +60,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let ht = ZendHashTable::new();
     /// ```
@@ -82,7 +82,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let ht = ZendHashTable::with_capacity(10);
     /// ```
@@ -108,7 +108,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -126,7 +126,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -146,7 +146,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -175,7 +175,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -202,7 +202,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -229,7 +229,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -255,7 +255,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -280,7 +280,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -315,7 +315,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -352,7 +352,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -387,7 +387,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -421,7 +421,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -450,7 +450,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -476,7 +476,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -501,7 +501,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///
@@ -523,7 +523,7 @@ impl ZendHashTable {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::types::ZendHashTable;
+    /// use nicelocal_ext_php_rs::types::ZendHashTable;
     ///
     /// let mut ht = ZendHashTable::new();
     ///

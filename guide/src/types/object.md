@@ -19,8 +19,8 @@ object.
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::{prelude::*, types::ZendObject};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::{prelude::*, types::ZendObject};
 
 // Take an object reference and also return it.
 #[php_function]
@@ -38,8 +38,8 @@ pub fn take_obj(obj: &mut ZendObject) -> () {
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::{prelude::*, types::ZendObject};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::{prelude::*, types::ZendObject};
 
 // Take an object reference and also return it.
 #[php_function]
@@ -58,8 +58,8 @@ pub fn take_obj(obj: &mut ZendObject) -> &mut ZendObject {
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::{prelude::*, types::ZendObject, boxed::ZBox};
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::{prelude::*, types::ZendObject, boxed::ZBox};
 
 // Create a new `stdClass` and return it.
 #[php_function]

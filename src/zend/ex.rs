@@ -24,7 +24,7 @@ impl ExecuteData {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType};
+    /// use nicelocal_ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType};
     ///
     /// #[no_mangle]
     /// pub extern "C" fn example_fn(ex: &mut ExecuteData, retval: &mut Zval) {
@@ -55,7 +55,7 @@ impl ExecuteData {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType};
+    /// use nicelocal_ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType};
     ///
     /// #[no_mangle]
     /// pub extern "C" fn example_fn(ex: &mut ExecuteData, retval: &mut Zval) {
@@ -105,7 +105,7 @@ impl ExecuteData {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType, prelude::*};
+    /// use nicelocal_ext_php_rs::{types::Zval, zend::ExecuteData, args::Arg, flags::DataType, prelude::*};
     ///
     /// #[php_class]
     /// #[derive(Debug)]
@@ -153,7 +153,7 @@ impl ExecuteData {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::{types::Zval, zend::ExecuteData, prelude::*};
+    /// use nicelocal_ext_php_rs::{types::Zval, zend::ExecuteData, prelude::*};
     ///
     /// #[php_class]
     /// #[derive(Debug)]
@@ -180,7 +180,7 @@ impl ExecuteData {
     /// # Example
     ///
     /// ```no_run
-    /// use ext_php_rs::{types::Zval, zend::ExecuteData};
+    /// use nicelocal_ext_php_rs::{types::Zval, zend::ExecuteData};
     ///
     /// #[no_mangle]
     /// pub extern "C" fn example_fn(ex: &mut ExecuteData, retval: &mut Zval) {

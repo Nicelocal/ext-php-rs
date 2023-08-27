@@ -67,12 +67,12 @@ pub fn parser(input: ItemFn) -> Result<TokenStream> {
 
         #[doc(hidden)]
         #[no_mangle]
-        pub extern "C" fn get_module() -> *mut ::ext_php_rs::zend::ModuleEntry {
+        pub extern "C" fn get_module() -> *mut ::nicelocal_ext_php_rs::zend::ModuleEntry {
             fn internal(#inputs) #output {
                 #(#stmts)*
             }
 
-            let mut builder = ::ext_php_rs::builders::ModuleBuilder::new(
+            let mut builder = ::nicelocal_ext_php_rs::builders::ModuleBuilder::new(
                 env!("CARGO_PKG_NAME"),
                 env!("CARGO_PKG_VERSION")
             )
@@ -107,10 +107,10 @@ pub fn generate_registered_class_impl(class: &Class) -> Result<TokenStream> {
         let func = Ident::new(&constructor.ident, Span::call_site());
         let args = constructor.get_arg_definitions();
         quote! {
-            Some(::ext_php_rs::class::ConstructorMeta {
+            Some(::nicelocal_ext_php_rs::class::ConstructorMeta {
                 constructor: Self::#func,
                 build_fn: {
-                    use ::ext_php_rs::builders::FunctionBuilder;
+                    use ::nicelocal_ext_php_rs::builders::FunctionBuilder;
                     fn build_fn(func: FunctionBuilder) -> FunctionBuilder {
                         func
                         #(#args)*
@@ -124,19 +124,19 @@ pub fn generate_registered_class_impl(class: &Class) -> Result<TokenStream> {
     };
 
     Ok(quote! {
-        static #meta: ::ext_php_rs::class::ClassMetadata<#self_ty> = ::ext_php_rs::class::ClassMetadata::new();
+        static #meta: ::nicelocal_ext_php_rs::class::ClassMetadata<#self_ty> = ::nicelocal_ext_php_rs::class::ClassMetadata::new();
 
-        impl ::ext_php_rs::class::RegisteredClass for #self_ty {
+        impl ::nicelocal_ext_php_rs::class::RegisteredClass for #self_ty {
             const CLASS_NAME: &'static str = #class_name;
             const CONSTRUCTOR: ::std::option::Option<
-                ::ext_php_rs::class::ConstructorMeta<Self>
+                ::nicelocal_ext_php_rs::class::ConstructorMeta<Self>
             > = #constructor;
 
-            fn get_metadata() -> &'static ::ext_php_rs::class::ClassMetadata<Self> {
+            fn get_metadata() -> &'static ::nicelocal_ext_php_rs::class::ClassMetadata<Self> {
                 &#meta
             }
 
-            fn get_properties<'a>() -> ::std::collections::HashMap<&'static str, ::ext_php_rs::props::Property<'a, Self>> {
+            fn get_properties<'a>() -> ::std::collections::HashMap<&'static str, ::nicelocal_ext_php_rs::props::Property<'a, Self>> {
                 use ::std::iter::FromIterator;
 
                 ::std::collections::HashMap::from_iter([
@@ -157,8 +157,8 @@ fn generate_stubs(state: &MutexGuard<State>) -> TokenStream {
     quote! {
         #[cfg(debug_assertions)]
         #[no_mangle]
-        pub extern "C" fn ext_php_rs_describe_module() -> ::ext_php_rs::describe::Description {
-            use ::ext_php_rs::describe::*;
+        pub extern "C" fn nicelocal_ext_php_rs_describe_module() -> ::nicelocal_ext_php_rs::describe::Description {
+            use ::nicelocal_ext_php_rs::describe::*;
 
             Description::new(#module)
         }
@@ -173,7 +173,7 @@ impl Describe for Function {
                 .expect("unreachable - failed to parse previously parsed function return type");
             quote! {
                 Some(Retval {
-                    ty: <#ty as ::ext_php_rs::convert::IntoZval>::TYPE,
+                    ty: <#ty as ::nicelocal_ext_php_rs::convert::IntoZval>::TYPE,
                     nullable: #null,
                 })
             }
@@ -211,7 +211,7 @@ impl Describe for Arg {
         quote! {
             Parameter {
                 name: #name.into(),
-                ty: abi::Option::Some(<#ty as ::ext_php_rs::convert::FromZvalMut>::TYPE),
+                ty: abi::Option::Some(<#ty as ::nicelocal_ext_php_rs::convert::FromZvalMut>::TYPE),
                 nullable: #nullable,
                 default: abi::Option::#default,
             }
@@ -300,7 +300,7 @@ impl Describe for crate::method::Method {
             let ty: Type = syn::parse_str(ty).expect("failed to parse previously parsed type");
             quote! {
                 Some(Retval {
-                    ty: <#ty as ::ext_php_rs::convert::IntoZval>::TYPE,
+                    ty: <#ty as ::nicelocal_ext_php_rs::convert::IntoZval>::TYPE,
                     nullable: #null,
                 })
             }

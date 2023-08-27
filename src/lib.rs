@@ -78,7 +78,7 @@ pub const PHP_ZTS: bool = cfg!(php_zts);
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_const]
 /// const TEST_CONSTANT: i32 = 100;
 ///
@@ -89,7 +89,7 @@ pub const PHP_ZTS: bool = cfg!(php_zts);
 /// #     module
 /// # }
 /// ```
-pub use ext_php_rs_derive::php_const;
+pub use nicelocal_ext_php_rs_derive::php_const;
 
 /// Attribute used to annotate `extern` blocks which are deemed as PHP
 /// functions.
@@ -123,8 +123,8 @@ pub use ext_php_rs_derive::php_const;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
-/// # use ext_php_rs::types::Zval;
+/// # use nicelocal_ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::types::Zval;
 /// #[php_extern]
 /// extern "C" {
 ///     fn strpos(haystack: &str, needle: &str, offset: Option<i64>) -> Zval;
@@ -143,7 +143,7 @@ pub use ext_php_rs_derive::php_const;
 /// [`strpos`]: https://www.php.net/manual/en/function.strpos.php
 /// [`IntoZval`]: crate::convert::IntoZval
 /// [`Zval`]: crate::types::Zval
-pub use ext_php_rs_derive::php_extern;
+pub use nicelocal_ext_php_rs_derive::php_extern;
 
 /// Attribute used to annotate a function as a PHP function.
 ///
@@ -189,7 +189,7 @@ pub use ext_php_rs_derive::php_extern;
 ///
 /// ```no_run
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::{prelude::*, exception::PhpException, zend::ExecuteData, convert::{FromZvalMut, IntoZval}, types::Zval, args::{Arg, ArgParser}};
+/// # use nicelocal_ext_php_rs::{prelude::*, exception::PhpException, zend::ExecuteData, convert::{FromZvalMut, IntoZval}, types::Zval, args::{Arg, ArgParser}};
 /// pub fn hello(name: String) -> String {
 ///     format!("Hello, {}!", name)
 /// }
@@ -234,7 +234,7 @@ pub use ext_php_rs_derive::php_extern;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_function]
 /// pub fn hello(name: String) -> String {
 ///     format!("Hello, {}!", name)
@@ -251,7 +251,7 @@ pub use ext_php_rs_derive::php_extern;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_function(optional = "description")]
 /// pub fn hello(name: String, description: Option<String>, age: Option<i32>) -> String {
 ///     let mut response = format!("Hello, {}!", name);
@@ -278,7 +278,7 @@ pub use ext_php_rs_derive::php_extern;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_function(optional = "description", defaults(description = "David", age = 10))]
 /// pub fn hello(name: String, description: String, age: i32) -> String {
 ///     format!("Hello, {}! {}. I am {} year(s) old.", name, description, age)
@@ -297,7 +297,7 @@ pub use ext_php_rs_derive::php_extern;
 /// [`Binary<T>`]: crate::binary::Binary
 /// [`ZendCallable`]: crate::types::ZendCallable
 /// [`PhpException`]: crate::exception::PhpException
-pub use ext_php_rs_derive::php_function;
+pub use nicelocal_ext_php_rs_derive::php_function;
 
 /// Annotates a structs `impl` block, declaring that all methods and constants
 /// declared inside the `impl` block will be declared as PHP methods and
@@ -349,7 +349,7 @@ pub use ext_php_rs_derive::php_function;
 ///
 /// ```no_run
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_class]
 /// #[derive(Debug)]
 /// pub struct Human {
@@ -387,7 +387,7 @@ pub use ext_php_rs_derive::php_function;
 ///     module
 /// }
 /// ```
-pub use ext_php_rs_derive::php_impl;
+pub use nicelocal_ext_php_rs_derive::php_impl;
 
 /// Annotates a function that will be used by PHP to retrieve information about
 /// the module.
@@ -419,7 +419,7 @@ pub use ext_php_rs_derive::php_impl;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_function]
 /// pub fn hello(name: String) -> String {
 ///     format!("Hello, {}!", name)
@@ -430,7 +430,7 @@ pub use ext_php_rs_derive::php_impl;
 ///     module
 /// }
 /// ```
-pub use ext_php_rs_derive::php_module;
+pub use nicelocal_ext_php_rs_derive::php_module;
 
 /// Annotates a struct that will be exported to PHP as a class.
 ///
@@ -467,7 +467,7 @@ pub use ext_php_rs_derive::php_module;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_class]
 /// pub struct Example {
 ///     x: i32,
@@ -486,9 +486,9 @@ pub use ext_php_rs_derive::php_module;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
-/// use ext_php_rs::exception::PhpException;
-/// use ext_php_rs::zend::ce;
+/// # use nicelocal_ext_php_rs::prelude::*;
+/// use nicelocal_ext_php_rs::exception::PhpException;
+/// use nicelocal_ext_php_rs::zend::ce;
 ///
 /// #[php_class(name = "Redis\\Exception\\RedisException")]
 /// #[extends(ce::exception())]
@@ -504,7 +504,7 @@ pub use ext_php_rs_derive::php_module;
 ///     module
 /// }
 /// ```
-pub use ext_php_rs_derive::php_class;
+pub use nicelocal_ext_php_rs_derive::php_class;
 
 /// Annotates a function that will be called by PHP when the module starts up.
 /// Generally used to register classes and constants.
@@ -529,7 +529,7 @@ pub use ext_php_rs_derive::php_class;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[php_startup]
 /// pub fn startup_function() {
 ///     // do whatever you need to do...
@@ -539,7 +539,7 @@ pub use ext_php_rs_derive::php_class;
 /// #     module
 /// # }
 /// ```
-pub use ext_php_rs_derive::php_startup;
+pub use nicelocal_ext_php_rs_derive::php_startup;
 
 /// Derives the traits required to convert a struct or enum to and from a
 /// [`Zval`]. Both [`FromZval`] and [`IntoZval`] are implemented on types which
@@ -564,7 +564,7 @@ pub use ext_php_rs_derive::php_startup;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[derive(Debug, ZvalConvert)]
 /// pub struct ExampleStruct<'a> {
 ///     a: i32,
@@ -603,7 +603,7 @@ pub use ext_php_rs_derive::php_startup;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[derive(Debug, ZvalConvert)]
 /// pub struct CompareVals<T: PartialEq<i32>> {
 ///     a: T,
@@ -642,7 +642,7 @@ pub use ext_php_rs_derive::php_startup;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// # use ext_php_rs::prelude::*;
+/// # use nicelocal_ext_php_rs::prelude::*;
 /// #[derive(Debug, ZvalConvert)]
 /// pub enum UnionExample<'a> {
 ///     Long(u64), // Long
@@ -678,7 +678,7 @@ pub use ext_php_rs_derive::php_startup;
 /// [`IntoZendObject`]: crate::convert::IntoZendObject
 /// [`Zval`]: crate::types::Zval.
 /// [`Zval::string`]: crate::types::Zval.::string
-pub use ext_php_rs_derive::ZvalConvert;
+pub use nicelocal_ext_php_rs_derive::ZvalConvert;
 
 /// Defines an `extern` function with the Zend fastcall convention based on
 /// operating system.
@@ -693,7 +693,7 @@ pub use ext_php_rs_derive::ZvalConvert;
 ///
 /// ```
 /// # #![cfg_attr(windows, feature(abi_vectorcall))]
-/// use ext_php_rs::zend_fastcall;
+/// use nicelocal_ext_php_rs::zend_fastcall;
 ///
 /// zend_fastcall! {
 ///     pub extern fn test_hello_world(a: i32, b: i32) -> i32 {
@@ -710,4 +710,4 @@ pub use ext_php_rs_derive::ZvalConvert;
 ///
 /// The `vectorcall` ABI is currently only supported on Windows with nightly
 /// Rust and the `abi_vectorcall` feature enabled.
-pub use ext_php_rs_derive::zend_fastcall;
+pub use nicelocal_ext_php_rs_derive::zend_fastcall;

@@ -147,7 +147,7 @@ pub fn parser(args: AttributeArgs, mut input: ItemStruct) -> Result<TokenStream>
     Ok(quote! {
         #input
 
-        ::ext_php_rs::class_derives!(#ident);
+        ::nicelocal_ext_php_rs::class_derives!(#ident);
     })
 }
 
@@ -229,7 +229,7 @@ impl Property {
             PropertyType::Field { field_name } => {
                 let field_name = Ident::new(field_name, Span::call_site());
                 quote! {
-                    (#name, ::ext_php_rs::props::Property::field(|obj: &mut Self| &mut obj.#field_name)),
+                    (#name, ::nicelocal_ext_php_rs::props::Property::field(|obj: &mut Self| &mut obj.#field_name)),
                 }
             }
             PropertyType::Method { getter, setter } => {
@@ -246,7 +246,7 @@ impl Property {
                     quote! { None }
                 };
                 quote! {
-                    (#name, ::ext_php_rs::props::Property::method(#getter, #setter)),
+                    (#name, ::nicelocal_ext_php_rs::props::Property::method(#getter, #setter)),
                 }
             }
         }

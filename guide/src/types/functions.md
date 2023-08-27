@@ -9,10 +9,10 @@ You may also use the infallible `from_function` and `from_method` variants, for 
 
 ```rust,no_run
 # #![cfg_attr(windows, feature(abi_vectorcall))]
-# extern crate ext_php_rs;
-use ext_php_rs::prelude::*;
+# extern crate nicelocal_ext_php_rs;
+use nicelocal_ext_php_rs::prelude::*;
 
-use ext_php_rs::zend::Function;
+use nicelocal_ext_php_rs::zend::Function;
 
 #[php_function]
 pub fn test_function() -> () {

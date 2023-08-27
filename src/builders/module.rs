@@ -1,6 +1,6 @@
 use crate::{
     error::Result,
-    ffi::{ext_php_rs_php_build_id, ZEND_MODULE_API_NO},
+    ffi::{nicelocal_ext_php_rs_php_build_id, ZEND_MODULE_API_NO},
     zend::{FunctionEntry, ModuleEntry},
     PHP_DEBUG, PHP_ZTS,
 };
@@ -12,7 +12,7 @@ use std::{ffi::CString, mem, ptr};
 /// pointer to a `ModuleEntry`.
 ///
 /// ```
-/// use ext_php_rs::{
+/// use nicelocal_ext_php_rs::{
 ///     builders::ModuleBuilder,
 ///     zend::ModuleEntry,
 ///     info_table_start, info_table_end, info_table_row
@@ -80,7 +80,7 @@ impl ModuleBuilder {
                 type_: 0,
                 handle: ptr::null_mut(),
                 module_number: 0,
-                build_id: unsafe { ext_php_rs_php_build_id() },
+                build_id: unsafe { nicelocal_ext_php_rs_php_build_id() },
             },
             functions: vec![],
         }

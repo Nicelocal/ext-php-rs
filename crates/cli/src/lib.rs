@@ -353,7 +353,7 @@ impl Remove {
 #[cfg(not(windows))]
 impl Stubs {
     pub fn handle(self) -> CrateResult {
-        use ext_php_rs::describe::ToStub;
+        use nicelocal_ext_php_rs::describe::ToStub;
         use std::{borrow::Cow, str::FromStr};
 
         let ext_path = if let Some(ext_path) = self.ext {
@@ -371,7 +371,7 @@ impl Stubs {
         let result = ext.describe();
 
         // Ensure extension and CLI `ext-php-rs` versions are compatible.
-        let cli_version = semver::VersionReq::from_str(ext_php_rs::VERSION).with_context(|| {
+        let cli_version = semver::VersionReq::from_str(nicelocal_ext_php_rs::VERSION).with_context(|| {
             "Failed to parse `ext-php-rs` version that `cargo php` was compiled with"
         })?;
         let ext_version = semver::Version::from_str(result.version).with_context(|| {

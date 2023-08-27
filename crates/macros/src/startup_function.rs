@@ -40,14 +40,14 @@ pub fn parser(args: Option<AttributeArgs>, input: ItemFn) -> Result<TokenStream>
     let func = quote! {
         #[doc(hidden)]
         pub extern "C" fn #ident(ty: i32, module_number: i32) -> i32 {
-            use ::ext_php_rs::constant::IntoConst;
-            use ::ext_php_rs::flags::PropertyFlags;
+            use ::nicelocal_ext_php_rs::constant::IntoConst;
+            use ::nicelocal_ext_php_rs::flags::PropertyFlags;
 
             fn internal(ty: i32, module_number: i32) {
                 #(#stmts)*
             }
 
-            ::ext_php_rs::internal::ext_php_rs_startup();
+            ::nicelocal_ext_php_rs::internal::nicelocal_ext_php_rs_startup();
 
             #before
             #(#classes)*
@@ -141,7 +141,7 @@ fn build_classes(classes: &HashMap<String, Class>) -> Result<Vec<TokenStream>> {
 
             let flags = {
                 if let Some(flags) = &class.flags {
-                    let mut name = "::ext_php_rs::flags::ClassFlags::".to_owned();
+                    let mut name = "::nicelocal_ext_php_rs::flags::ClassFlags::".to_owned();
                     name.push_str(flags);
                     let expr: Expr = syn::parse_str(&name).map_err(|_| {
                         anyhow!("Invalid expression given for `{}` flags", class_name)
@@ -165,7 +165,7 @@ fn build_classes(classes: &HashMap<String, Class>) -> Result<Vec<TokenStream>> {
             };
 
             Ok(quote! {{
-                let builder = ::ext_php_rs::builders::ClassBuilder::new(#class_name)
+                let builder = ::nicelocal_ext_php_rs::builders::ClassBuilder::new(#class_name)
                     #(#methods)*
                     #(#constants)*
                     #(#interfaces)*

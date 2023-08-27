@@ -69,10 +69,10 @@ pub fn parser(args: AttributeArgs, input: ItemFn) -> Result<(TokenStream, Functi
     let func = quote! {
         #input
 
-        ::ext_php_rs::zend_fastcall! {
+        ::nicelocal_ext_php_rs::zend_fastcall! {
             #[doc(hidden)]
-            pub extern fn #internal_ident(ex: &mut ::ext_php_rs::zend::ExecuteData, retval: &mut ::ext_php_rs::types::Zval) {
-                use ::ext_php_rs::convert::IntoZval;
+            pub extern fn #internal_ident(ex: &mut ::nicelocal_ext_php_rs::zend::ExecuteData, retval: &mut ::nicelocal_ext_php_rs::types::Zval) {
+                use ::nicelocal_ext_php_rs::convert::IntoZval;
 
                 #(#arg_definitions)*
                 #arg_parser
@@ -80,7 +80,7 @@ pub fn parser(args: AttributeArgs, input: ItemFn) -> Result<(TokenStream, Functi
                 let result = #ident(#(#arg_accessors, )*);
 
                 if let Err(e) = result.set_zval(retval, false) {
-                    let e: ::ext_php_rs::exception::PhpException = e.into();
+                    let e: ::nicelocal_ext_php_rs::exception::PhpException = e.into();
                     e.throw().expect("Failed to throw exception");
                 }
             }
@@ -209,7 +209,7 @@ pub fn build_arg_parser<'a>(
                 let this = match this {
                     Some(this) => this,
                     None => {
-                        ::ext_php_rs::exception::PhpException::default("Failed to retrieve reference to `$this`".into())
+                        ::nicelocal_ext_php_rs::exception::PhpException::default("Failed to retrieve reference to `$this`".into())
                             .throw()
                             .unwrap();
                         return;
@@ -312,7 +312,7 @@ impl Arg {
     pub fn get_type_ident(&self) -> TokenStream {
         let ty: Type = syn::parse_str(&self.ty).unwrap();
         quote! {
-            <#ty as ::ext_php_rs::convert::FromZvalMut>::TYPE
+            <#ty as ::nicelocal_ext_php_rs::convert::FromZvalMut>::TYPE
         }
     }
 
@@ -342,7 +342,7 @@ impl Arg {
                 match #name_ident.val() {
                     Some(val) => val,
                     None => {
-                        ::ext_php_rs::exception::PhpException::default(
+                        ::nicelocal_ext_php_rs::exception::PhpException::default(
                             concat!("Invalid value given for argument `", #name, "`.").into()
                         )
                         .throw()
@@ -368,7 +368,7 @@ impl Arg {
         });
 
         quote! {
-            ::ext_php_rs::args::Arg::new(#name, #ty) #null #default
+            ::nicelocal_ext_php_rs::args::Arg::new(#name, #ty) #null #default
         }
     }
 }
@@ -402,12 +402,12 @@ impl Function {
 
             // TODO allow reference returns?
             quote! {
-                .returns(<#ty as ::ext_php_rs::convert::IntoZval>::TYPE, false, #nullable)
+                .returns(<#ty as ::nicelocal_ext_php_rs::convert::IntoZval>::TYPE, false, #nullable)
             }
         });
 
         quote! {
-            ::ext_php_rs::builders::FunctionBuilder::new(#name, #name_ident)
+            ::nicelocal_ext_php_rs::builders::FunctionBuilder::new(#name, #name_ident)
                 #(#args)*
                 #output
                 .build()

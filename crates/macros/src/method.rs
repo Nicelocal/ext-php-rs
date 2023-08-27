@@ -163,10 +163,10 @@ pub fn parser(
 
             #[doc(hidden)]
             pub fn #internal_ident(
-                ex: &mut ::ext_php_rs::zend::ExecuteData
-            ) -> ::ext_php_rs::class::ConstructorResult<Self> {
-                use ::ext_php_rs::convert::IntoZval;
-                use ::ext_php_rs::class::ConstructorResult;
+                ex: &mut ::nicelocal_ext_php_rs::zend::ExecuteData
+            ) -> ::nicelocal_ext_php_rs::class::ConstructorResult<Self> {
+                use ::nicelocal_ext_php_rs::convert::IntoZval;
+                use ::nicelocal_ext_php_rs::class::ConstructorResult;
 
                 #(#arg_definitions)*
                 #arg_parser
@@ -183,13 +183,13 @@ pub fn parser(
         quote! {
             #input
 
-            ::ext_php_rs::zend_fastcall! {
+            ::nicelocal_ext_php_rs::zend_fastcall! {
                 #[doc(hidden)]
                 pub extern fn #internal_ident(
-                    ex: &mut ::ext_php_rs::zend::ExecuteData,
-                    retval: &mut ::ext_php_rs::types::Zval
+                    ex: &mut ::nicelocal_ext_php_rs::zend::ExecuteData,
+                    retval: &mut ::nicelocal_ext_php_rs::types::Zval
                 ) {
-                    use ::ext_php_rs::convert::IntoZval;
+                    use ::nicelocal_ext_php_rs::convert::IntoZval;
 
                     #(#arg_definitions)*
                     #arg_parser
@@ -197,7 +197,7 @@ pub fn parser(
                     let result = #this #ident(#(#arg_accessors,)*);
 
                     if let Err(e) = result.set_zval(retval, false) {
-                        let e: ::ext_php_rs::exception::PhpException = e.into();
+                        let e: ::nicelocal_ext_php_rs::exception::PhpException = e.into();
                         e.throw().expect("Failed to throw exception");
                     }
                 }
@@ -428,12 +428,12 @@ impl Method {
 
             // TODO allow reference returns?
             quote! {
-                .returns(<#ty as ::ext_php_rs::convert::IntoZval>::TYPE, false, #nullable)
+                .returns(<#ty as ::nicelocal_ext_php_rs::convert::IntoZval>::TYPE, false, #nullable)
             }
         });
 
         quote! {
-            ::ext_php_rs::builders::FunctionBuilder::new(#name, #class_path :: #name_ident)
+            ::nicelocal_ext_php_rs::builders::FunctionBuilder::new(#name, #class_path :: #name_ident)
                 #(#args)*
                 #output
                 .build()
@@ -457,7 +457,7 @@ impl Method {
 
         flags
             .iter()
-            .map(|flag| quote! { ::ext_php_rs::flags::MethodFlags::#flag })
+            .map(|flag| quote! { ::nicelocal_ext_php_rs::flags::MethodFlags::#flag })
             .collect::<Punctuated<TokenStream, Token![|]>>()
             .to_token_stream()
     }
